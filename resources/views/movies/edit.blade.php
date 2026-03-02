@@ -67,6 +67,11 @@
                     <label class="form-label">Synopsis</label>
                     <textarea class="form-control bg-dark text-white border-secondary" rows="3" name="description">{{ $movie->description }}</textarea>
                 </div>
+                
+                <div class="mb-3">
+                    <label class="form-label">YouTube Trailer URL</label>
+                    <input type="text" name="trailer_url" value="{{ $movie->trailer_url ?? '' }}" class="form-control bg-dark text-white border-secondary">
+                </div>
 
                 <div class="d-flex gap-2">
                     <button type="submit" class="btn btn-netflix flex-grow-1">Update Movie</button>

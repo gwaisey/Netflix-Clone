@@ -80,9 +80,17 @@
             </p>
 
             <div class="d-flex gap-3">
-                <button class="btn btn-play d-flex align-items-center">
-                    <span class="me-2">▶</span> Play
-                </button>
+                @if($movie->trailer_url)
+                    <a href="{{ str_starts_with($movie->trailer_url, 'http') ? $movie->trailer_url : 'https://' . $movie->trailer_url }}" 
+                    target="_blank" 
+                    class="btn btn-play d-flex align-items-center text-decoration-none">
+                        <span class="me-2">▶</span> Play Trailer
+                    </a>
+                @else
+                    <button class="btn btn-play d-flex align-items-center" style="opacity: 0.5; cursor: not-allowed;" disabled>
+                        <span class="me-2">▶</span> Trailer Unavailable
+                    </button>
+                @endif
                 <a href="{{ url('/movies/'.$movie->id.'/edit') }}" class="btn btn-info-custom d-flex align-items-center">
                     <span class="me-2">ⓘ</span> Edit Movie
                 </a>

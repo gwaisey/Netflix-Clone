@@ -35,6 +35,7 @@ class MovieController extends Controller
             'genre'       => 'required',
             'poster_url'  => 'required|url',
             'description' => 'required|min:10',
+            'trailer_url' => 'nullable|url', // Tambahkan ini agar trailer tervalidasi
         ]);
 
         // Proses input ke database
@@ -43,6 +44,7 @@ class MovieController extends Controller
         $movie->genre       = $validateData['genre'];
         $movie->poster_url  = $validateData['poster_url'];
         $movie->description = $validateData['description'];
+        $movie->trailer_url = $request->trailer_url; // TAMBAHKAN BARIS INI
         $movie->save();
 
         return redirect('/movies')->with('success', "Movie '{$movie->title}' added successfully!");
@@ -67,10 +69,18 @@ class MovieController extends Controller
             'genre'       => 'required',
             'poster_url'  => 'required|url',
             'description' => 'required|min:10',
+            'trailer_url' => 'nullable|url',
         ]);
 
         $movie = Movie::findOrFail($id);
-        $movie->update($validateData);
+        
+        // Menggunakan manual assignment agar lebih pasti tersimpan
+        $movie->title       = $request->title;
+        $movie->genre       = $request->genre;
+        $movie->poster_url  = $request->poster_url;
+        $movie->description = $request->description;
+        $movie->trailer_url = $request->trailer_url; // PASTIKAN BARIS INI ADA
+        $movie->save();
 
         return redirect('/movies')->with('success', "Movie '{$movie->title}' updated successfully!");
     }

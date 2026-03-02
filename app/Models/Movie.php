@@ -10,5 +10,5 @@ class Movie extends Model
     use HasFactory;
 
     // Menentukan kolom mana saja yang boleh diisi (Mass Assignment)
-    protected $fillable = ['title', 'genre', 'poster_url', 'description'];
+    protected $fillable = ['title', 'genre', 'poster_url', 'description', 'trailer_url'];
 }

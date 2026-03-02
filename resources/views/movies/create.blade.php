@@ -75,6 +75,10 @@
                         <div class="text-danger small mt-1">{{ $message }}</div> 
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">YouTube Trailer URL</label>
+                    <input type="text" name="trailer_url" value="{{ $movie->trailer_url ?? '' }}" class="form-control">
+                </div>
 
                 <div class="d-flex gap-2 mt-4">
                     <button type="submit" class="btn btn-netflix flex-grow-1 fw-bold">Add to Catalog</button>
